@@ -1,5 +1,5 @@
 # CSRETestRepo
-Alan Gave us a shell script to run on an instnace we have for security reasons and I wanted to try how to run it by using S3 bucket and Cloud init
+Alan Gave us a shell script to run on an instance we have for security reasons and I wanted to try how to run it by using S3 bucket and Cloud init
 
 Created a .yaml file for the securityscript
 Uploaded the .yaml file on S3 bucket
