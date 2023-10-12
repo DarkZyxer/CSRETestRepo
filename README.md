@@ -1,4 +1,4 @@
-Alan Gave us a shell script to run on an instnace we have for security reasons and I wanted to try how to run it by using S3 bucket and Cloud init
+Alan Gave us a script to run on an instance we have for security reasons and I wanted to try how to run it by using S3 bucket and Cloud init
 
 Created a .yaml file for the securityscript
 Uploaded the .yaml file on S3 bucket
@@ -36,3 +36,4 @@ aws s3 cp s3://ian-bucket-securityscript-test/testscript.yaml /tmp/cloud-init-co
 cloud-init -d init-local --local /tmp/cloud-init-config.yaml
 ```
 This Configuration worked on getting the git repo and moving the index.html to the html folder.
+
