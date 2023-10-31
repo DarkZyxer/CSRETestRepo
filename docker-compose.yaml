@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  #Database
+  mysql_db:
+    container_name: mysql_container
+    image: mysql:8.2.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret.sh
+      MYSQL_DATABASE: wp_db
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: secret.sh
+    volumes:
+      - mysql_vol:/var/lib/mysql
+  
+  #Wordpress Image (Based on Apache)
+  wordpress:
+    container_name: Wordpress
+    depends_on:
+      - mysql_db
+    image: wordpress:latest
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql_db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: secret.sh
+      WORDPRESS_DB_NAME: wp_db
+    volumes:
+      - ["./:/var/www/html"]
+
+volumes:
+  mysql_volume: {}
