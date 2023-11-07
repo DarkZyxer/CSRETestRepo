@@ -7,12 +7,18 @@ services:
     image: mysql:8.2.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: secret.sh
+      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       MYSQL_DATABASE: wp_db
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: secret.sh
+      MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
     volumes:
       - mysql_vol:/var/lib/mysql
+  app: 
+    image: my-app-image
+    environment:
+      DATABASE_URL: mysql_db://wordpress:${MYSQL_PASSWORD}@mysql_db:3306/wp_db
+    depends_on:
+      - mysql_db
   
   #Wordpress Image (Based on Apache)
   wordpress:
